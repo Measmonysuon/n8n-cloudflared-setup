@@ -1,0 +1,15 @@
+[Unit]
+Description=cloudflared
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=user
+WorkingDirectory=/home/user
+TimeoutStartSec=0
+ExecStart=/usr/local/bin/cloudflared --no-autoupdate tunnel run n8n
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
